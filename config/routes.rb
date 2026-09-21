@@ -1,4 +1,4 @@
-Bureau::Engine.routes.draw do
+SettingsHub::Engine.routes.draw do
   get "/", to: "settings#show", as: :settings
   namespace :api do
     resources :sections, only: :index

@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class DummyRename
+class <%= save_object %>
   def initialize(person:, account:, values:)
     @person = person
     @account = account
@@ -8,8 +6,6 @@ class DummyRename
   end
 
   def call
-    @person.update(name: "#{@values[:name]} of #{@account}")
-
     SettingsHub::Result.ok
   end
 end

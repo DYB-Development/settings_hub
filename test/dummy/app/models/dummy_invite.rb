@@ -10,6 +10,6 @@ class DummyInvite
   def call
     @person.update(name: "#{@person.name} invited #{@values[:email]}")
 
-    Bureau::Result.ok
+    SettingsHub::Result.ok
   end
 end

@@ -8,6 +8,6 @@ class DummyRefusal
   end
 
   def call
-    Bureau::Result.refused("That name is spoken for")
+    SettingsHub::Result.refused("That name is spoken for")
   end
 end
