@@ -1,24 +1,24 @@
 scope: settings — one settings page whose sections are registered by the app and by other gems
 
 install:
-  - gem "bureau"
-  - mount Bureau::Engine
+  - gem "settings_hub"
+  - mount SettingsHub::Engine
   - current_person
   - settings_account
   - can?
   - after_settings_change
-  - Bureau.capabilities
+  - SettingsHub.capabilities
 
 develop:
-  - bin/rails generate bureau:section
+  - bin/rails generate settings_hub:section
   - GET /settings/api/sections
   - PATCH /settings/api/sections/:key/:action_name
-  - Bureau.section
-  - Bureau.replace_section
-  - Bureau.registry
-  - Bureau::Result.ok
-  - Bureau::Result.refused
-  - Bureau::BadRegistration
+  - SettingsHub.section
+  - SettingsHub.replace_section
+  - SettingsHub.registry
+  - SettingsHub::Result.ok
+  - SettingsHub::Result.refused
+  - SettingsHub::BadRegistration
   - section.key
   - section.area
   - section.title
@@ -36,22 +36,22 @@ develop:
   - submit_urls
 
 sources:
-  - lib/bureau.rb
-  - lib/bureau/registry.rb
-  - lib/bureau/section.rb
-  - lib/bureau/result.rb
-  - lib/bureau/bad_registration.rb
-  - lib/bureau/settings_account.rb
-  - lib/bureau/engine.rb
+  - lib/settings_hub.rb
+  - lib/settings_hub/registry.rb
+  - lib/settings_hub/section.rb
+  - lib/settings_hub/result.rb
+  - lib/settings_hub/bad_registration.rb
+  - lib/settings_hub/settings_account.rb
+  - lib/settings_hub/engine.rb
   - config/routes.rb
-  - app/controllers/bureau/application_controller.rb
-  - app/controllers/bureau/sections_controller.rb
-  - app/controllers/bureau/api/sections_controller.rb
-  - app/controllers/bureau/settings_controller.rb
-  - app/views/bureau/settings/show.html.erb
-  - app/views/bureau/sections/_profile.html.erb
-  - app/models/bureau/change_name.rb
+  - app/controllers/settings_hub/application_controller.rb
+  - app/controllers/settings_hub/sections_controller.rb
+  - app/controllers/settings_hub/api/sections_controller.rb
+  - app/controllers/settings_hub/settings_controller.rb
+  - app/views/settings_hub/settings/show.html.erb
+  - app/views/settings_hub/sections/_profile.html.erb
+  - app/models/settings_hub/change_name.rb
   - test/dummy/app/controllers/application_controller.rb
   - test/dummy/app/models/dummy_settings.rb
-  - lib/generators/bureau/section/section_generator.rb
-  - lib/bureau/reference/guide.md
+  - lib/generators/settings_hub/section/section_generator.rb
+  - lib/settings_hub/reference/guide.md

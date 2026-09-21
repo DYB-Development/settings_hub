@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount Bureau::Engine => "/bureau"
+  mount SettingsHub::Engine => "/settings_hub"
 end
