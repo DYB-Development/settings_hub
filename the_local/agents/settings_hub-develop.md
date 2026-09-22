@@ -166,10 +166,10 @@ added to or changed in an app that already has settings_hub mounted.
 
    ```ruby
    SettingsHub.section :team, area: :team, title: "Team", capability: :manage_team,
-     renders: "citizen/members/team",
+     renders: "account_authz/members/team",
      runs: {
-       invite: "Citizen::Invite",
-       remove: "Citizen::RemoveMember"
+       invite: "AccountAuthz::Invite",
+       remove: "AccountAuthz::RemoveMember"
      }
    ```
 
