@@ -92,7 +92,7 @@ building one.
    in `config/initializers/settings_hub.rb`, creating that file if the app has none:
 
    ```ruby
-   SettingsHub.capabilities = -> { Citizen.capabilities }
+   SettingsHub.capabilities = -> { AccountAuthz.capabilities }
    ```
 
    It takes a list or something answering `call` that returns one; use the

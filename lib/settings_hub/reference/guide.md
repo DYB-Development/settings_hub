@@ -101,11 +101,11 @@ front of a person:
 The third runs only once the app declares what it recognises:
 
 ```ruby
-SettingsHub.capabilities = -> { Citizen.capabilities }
+SettingsHub.capabilities = -> { AccountAuthz.capabilities }
 ```
 
 An app that declares nothing gets no capability check, which is what lets settings_hub
-be installed without citizen.
+be installed without account_authz.
 
 ### The object a section runs
 
@@ -201,10 +201,10 @@ own address, handed to the partial in `submit_urls`:
 
 ```ruby
 SettingsHub.section :team, area: :team, title: "Team", capability: :manage_team,
-  renders: "citizen/members/team",
+  renders: "account_authz/members/team",
   runs: {
-    invite: "Citizen::Invite",
-    remove: "Citizen::RemoveMember"
+    invite: "AccountAuthz::Invite",
+    remove: "AccountAuthz::RemoveMember"
   }
 ```
 
