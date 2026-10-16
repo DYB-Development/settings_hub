@@ -51,6 +51,12 @@ module SettingsHub
       assert_select "nav[aria-label=Settings] a[href=?]", "/settings_hub/profile"
     end
 
+    test "the settings links are not prefetched when the pointer hovers over them" do
+      get "/settings_hub"
+
+      assert_select "nav[aria-label=Settings][data-turbo-prefetch=false]"
+    end
+
     test "a section whose capability the person does not hold is not listed" do
       SettingsHub.replace_section :team, area: :team, title: "Team", capability: :manage_team
 
