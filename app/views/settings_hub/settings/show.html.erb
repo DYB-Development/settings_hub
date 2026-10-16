@@ -7,7 +7,7 @@
         <section aria-label="<%= area.to_s.titleize %>">
           <%= ui_section(title: area.to_s.titleize) do %>
             <%= ui_panel do %>
-              <nav aria-label="Settings">
+              <nav aria-label="Settings" data-turbo-prefetch="false">
                 <% sections.each do |section| %>
                   <%= link_to section.title, section.at || section_path(section.key), "aria-current": ("page" if section == @section) %>
                 <% end %>
