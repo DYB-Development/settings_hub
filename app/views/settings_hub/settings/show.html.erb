@@ -1,7 +1,9 @@
 <%= ui_page(max_width: :xl) do %>
   <%= ui_page_header(title: "Settings") %>
 
-  <% unless @section %>
+  <% if @section %>
+    <%= ui_mobile_header(title: @section.title, back_url: settings_path) %>
+  <% else %>
     <div class="lg:hidden">
       <% @areas.each do |area, sections| %>
         <%= ui_section(title: area.to_s.titleize) do %>
