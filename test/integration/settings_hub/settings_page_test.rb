@@ -23,6 +23,12 @@ module SettingsHub
       assert_select "[class~='lg:hidden'] .ks-value-list a:has(svg)", text: /Notifications/
     end
 
+    test "on a phone the settings page hides the desktop list of sections" do
+      get "/settings_hub"
+
+      assert_select "[class~='hidden'][class~='lg:block'] nav[aria-label=Settings]", minimum: 1
+    end
+
     test "the settings page names itself" do
       get "/settings_hub"
 
