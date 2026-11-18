@@ -4,7 +4,7 @@
   <% end %>
 
   <% if @section %>
-    <%= ui_mobile_header(title: @section.title, back_url: settings_path) %>
+    <%= ui_mobile_header(title: @section.title, back_url: settings_path) unless settings_in_native_app? %>
   <% else %>
     <div class="lg:hidden">
       <% @areas.each do |area, sections| %>

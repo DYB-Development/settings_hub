@@ -23,5 +23,11 @@ module SettingsHub
 
       assert_select "[class~='hidden'][class~='lg:block'] h1", text: "Settings"
     end
+
+    test "inside the native app a section page draws no web back link, leaving the app's own back button" do
+      get "/settings_hub/profile", params: { signed_in_as: @person.id }, headers: { "User-Agent" => "Hotwire Native iOS; Turbo Native iOS" }
+
+      assert_select "a[aria-label=Back]", count: 0
+    end
   end
 end
