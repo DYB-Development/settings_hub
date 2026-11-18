@@ -1,5 +1,7 @@
 <%= ui_page(max_width: :xl) do %>
-  <%= ui_page_header(title: "Settings") %>
+  <%= tag.div(class: class_names("hidden lg:block": @section)) do %>
+    <%= ui_page_header(title: "Settings") %>
+  <% end %>
 
   <% if @section %>
     <%= ui_mobile_header(title: @section.title, back_url: settings_path) %>
