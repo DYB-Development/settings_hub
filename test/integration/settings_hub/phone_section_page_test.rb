@@ -35,5 +35,11 @@ module SettingsHub
 
       assert_select "[class~='lg:block'] nav[aria-label=Settings] a[aria-current=page]", text: "Profile"
     end
+
+    test "a refused save on a phone shows the refusal on the section's own page, with its back link" do
+      patch "/settings_hub/spoken_for", params: { signed_in_as: @person.id, name: "Renamed Person" }
+
+      assert_select "[class~='lg:hidden'] a[aria-label=Back][href='/settings_hub/']"
+    end
   end
 end
