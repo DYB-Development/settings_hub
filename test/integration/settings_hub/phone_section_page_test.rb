@@ -29,5 +29,11 @@ module SettingsHub
 
       assert_select "a[aria-label=Back]", count: 0
     end
+
+    test "on desktop a section page shows the list of sections beside the section, marking the section as current" do
+      get "/settings_hub/profile", params: { signed_in_as: @person.id }
+
+      assert_select "[class~='lg:block'] nav[aria-label=Settings] a[aria-current=page]", text: "Profile"
+    end
   end
 end
