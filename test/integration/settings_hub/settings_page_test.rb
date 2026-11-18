@@ -17,6 +17,12 @@ module SettingsHub
       assert_select "title", text: "Dummy"
     end
 
+    test "on a phone the settings page lists each section as a row with a chevron" do
+      get "/settings_hub"
+
+      assert_select "[class~='lg:hidden'] .ks-value-list a:has(svg)", text: /Notifications/
+    end
+
     test "the settings page names itself" do
       get "/settings_hub"
 

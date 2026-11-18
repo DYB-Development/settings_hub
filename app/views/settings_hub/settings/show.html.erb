@@ -1,6 +1,16 @@
 <%= ui_page(max_width: :xl) do %>
   <%= ui_page_header(title: "Settings") %>
 
+  <% unless @section %>
+    <div class="lg:hidden">
+      <% @areas.each do |area, sections| %>
+        <%= ui_section(title: area.to_s.titleize) do %>
+          <%= ui_link_list(rows: sections.map { |section| { label: section.title, href: section.at || section_path(section.key) } }) %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
   <%= ui_grid(cols: { default: 1, lg: 2 }, gap: :lg) do %>
     <%= ui_section do %>
       <% @areas.each do |area, sections| %>
