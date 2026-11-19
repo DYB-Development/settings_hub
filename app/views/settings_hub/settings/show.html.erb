@@ -1,20 +1,36 @@
 <%= ui_page(max_width: :xl) do %>
-  <%= ui_page_header(title: "Settings") %>
+  <%= tag.div(class: class_names("hidden lg:block": @section)) do %>
+    <%= ui_page_header(title: "Settings") %>
+  <% end %>
+
+  <% if @section %>
+    <%= ui_mobile_header(title: @section.title, back_url: settings_path) unless settings_in_native_app? %>
+  <% else %>
+    <div class="lg:hidden">
+      <% @areas.each do |area, sections| %>
+        <%= ui_section(title: area.to_s.titleize) do %>
+          <%= ui_link_list(rows: sections.map { |section| { label: section.title, href: section.at || section_path(section.key) } }) %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 
   <%= ui_grid(cols: { default: 1, lg: 2 }, gap: :lg) do %>
-    <%= ui_section do %>
-      <% @areas.each do |area, sections| %>
-        <section aria-label="<%= area.to_s.titleize %>">
-          <%= ui_section(title: area.to_s.titleize) do %>
-            <%= ui_panel do %>
-              <nav aria-label="Settings" data-turbo-prefetch="false">
-                <% sections.each do |section| %>
-                  <%= link_to section.title, section.at || section_path(section.key), "aria-current": ("page" if section == @section) %>
-                <% end %>
-              </nav>
+    <%= tag.div(class: "hidden lg:block") do %>
+      <%= ui_section do %>
+        <% @areas.each do |area, sections| %>
+          <section aria-label="<%= area.to_s.titleize %>">
+            <%= ui_section(title: area.to_s.titleize) do %>
+              <%= ui_panel do %>
+                <nav aria-label="Settings" data-turbo-prefetch="false">
+                  <% sections.each do |section| %>
+                    <%= link_to section.title, section.at || section_path(section.key), "aria-current": ("page" if section == @section) %>
+                  <% end %>
+                </nav>
+              <% end %>
             <% end %>
-          <% end %>
-        </section>
+          </section>
+        <% end %>
       <% end %>
     <% end %>
 
