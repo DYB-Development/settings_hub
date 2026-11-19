@@ -23,6 +23,9 @@
   </head>
 
   <body>
+    <% if content_for?(:show_page) %>
+      <%= ui_mobile_header(title: yield(:show_page_title), back_url: yield(:show_page_back_url)) %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
